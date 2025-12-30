@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiniela Mundial FIFA 2026</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="ball-animation">⚽</div>
+                <h1>Mundial FIFA 2026</h1>
+                <p>Quiniela Oficial</p>
+            </div>
+            <div id="formLogin" class="auth-form">
+                <input type="text" id="loginUsername" class="input-field" placeholder="Usuario">
+                <input type="password" id="loginPassword" class="input-field" placeholder="Contraseña">
+                <button id="btnLogin" class="btn btn-primary">Iniciar Sesión</button>
+                <button id="btnShowRegister" class="btn btn-success">Crear Cuenta</button>
+                <button id="btnShowAdmin" class="btn btn-ghost">Acceso Administrador</button>
+                <div id="registroDeshabilitadoWarning" class="hidden"
+                    style="background:#fff3cd;border:2px solid #ffc107;padding:15px;border-radius:10px;margin-top:15px;text-align:center;">
+                    <strong style="color:#856404;">⚠️ Registro Cerrado</strong>
+                    <p style="color:#856404;margin:8px 0 0 0;font-size:0.9rem;">El registro de nuevos usuarios está
+                        deshabilitado.</p>
+                </div>
+            </div>
+            <div id="formRegister" class="auth-form hidden">
+                <div class="alert-info">
+                    <strong>⚠️ IMPORTANTE</strong>
+                    <p>Ingresa tus datos reales. En caso de ganar, necesitaremos esta información para entregarte el
+                        premio.</p>
+                </div>
+                <input type="text" id="regFullName" class="input-field" placeholder="Nombre Completo *">
+                <input type="text" id="regUsername" class="input-field" placeholder="Usuario *">
+                <input type="tel" id="regWhatsapp" class="input-field"
+                    placeholder="WhatsApp (con código de país, ej: +52) *">
+                <input type="password" id="regPassword" class="input-field" placeholder="Contraseña *">
+                <input type="password" id="regPasswordConfirm" class="input-field" placeholder="Confirmar Contraseña *">
+
+                <div style="background:#f8f9fa;padding:20px;border-radius:10px;margin-top:10px;">
+                    <h4 style="margin-bottom:15px;color:var(--primary);">🏆 Vota por la Distribución de Premios</h4>
+                    <p style="margin-bottom:15px;font-size:0.9rem;color:#666;">Selecciona cómo se repartirá el premio
+                        entre los 3 primeros lugares:</p>
+
+                    <label class="radio-option">
+                        <input type="radio" name="distribucion" value="clasico" checked>
+                        <div class="radio-content">
+                            <strong>Modelo Clásico</strong>
+                            <div class="distribucion-detalle">1° 50% | 2° 30% | 3° 20%</div>
+                        </div>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="distribucion" value="ganador">
+                        <div class="radio-content">
+                            <strong>Gran Ganador</strong>
+                            <div class="distribucion-detalle">1° 60% | 2° 25% | 3° 15%</div>
+                        </div>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="distribucion" value="escalera">
+                        <div class="radio-content">
+                            <strong>Escalera Suave</strong>
+                            <div class="distribucion-detalle">1° 45% | 2° 33% | 3° 22%</div>
+                        </div>
+                    </label>
+                </div>
+
+                <button id="btnRegister" class="btn btn-primary">Registrarse</button>
+                <button id="btnBackToLogin" class="btn btn-ghost">Volver</button>
+            </div>
+            <div id="formAdmin" class="auth-form hidden">
+                <h3>Acceso Administrador</h3>
+                <input type="password" id="adminPassword" class="input-field" placeholder="Clave de Administrador">
+                <button id="btnAdminLogin" class="btn btn-primary">Entrar</button>
+                <button id="btnBackToLoginFromAdmin" class="btn btn-ghost">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div id="appScreen" class="app-screen hidden">
+        <nav class="navbar">
+            <div class="nav-brand">⚽ Mundial 2026</div>
+            <div class="nav-user">
+                <span id="currentUserName"></span>
+                <button id="btnLogout" class="btn btn-ghost btn-sm">🚪 Salir</button>
+            </div>
+        </nav>
+
+        <!-- Banner de Premio -->
+        <div id="bannerPremio" class="prize-banner">
+            <div class="prize-banner-content">
+                <div class="prize-amount">
+                    <div class="prize-label">💰 PREMIO TOTAL</div>
+                    <div class="prize-value" id="premioTotal">$0</div>
+                </div>
+                <div class="prize-distribution">
+                    <div class="prize-label">🏆 DISTRIBUCIÓN</div>
+                    <div class="prize-breakdown" id="premioDistribucion">
+                        <span class="prize-place">🥇 $0</span>
+                        <span class="prize-place">🥈 $0</span>
+                        <span class="prize-place">🥉 $0</span>
+                    </div>
+                    <div class="prize-model" id="premioModelo">Modelo Clásico</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" data-view="pronosticos">📝 Pronósticos</button>
+            <button class="nav-btn" data-view="resultados">📊 Resultados</button>
+            <button class="nav-btn" data-view="ranking">🏆 Ranking</button>
+            <button class="nav-btn" data-view="reglas">📋 Reglas</button>
+            <button id="navLlaves" class="nav-btn hidden" data-view="llaves">🎯 Llaves</button>
+            <button id="navAdmin" class="nav-btn hidden" data-view="admin">⚙️ Admin</button>
+        </div>
+        <main class="main-content">
+            <section id="viewPronosticos" class="view-section">
+                <div class="section-header">
+                    <h3>📝 Mis Pronósticos</h3>
+                    <div class="jornada-selector">
+                        <button id="btnPrevJornada" class="btn-nav">◀</button>
+                        <span id="jornadaDisplay">Jornada 1</span>
+                        <button id="btnNextJornada" class="btn-nav">▶</button>
+                    </div>
+                </div>
+                <div id="lockWarning" class="alert alert-warning hidden"></div>
+                <div id="pronosticosContainer" class="partidos-grid"></div>
+                <button id="btnGuardarPronosticos" class="btn btn-primary btn-large">Guardar Pronósticos</button>
+            </section>
+            <section id="viewResultados" class="view-section hidden">
+                <div class="section-header">
+                    <h3>📊 Resultados Oficiales</h3>
+                    <div class="jornada-selector">
+                        <button id="btnPrevJornadaRes" class="btn-nav">◀</button>
+                        <span id="jornadaDisplayRes">Jornada 1</span>
+                        <button id="btnNextJornadaRes" class="btn-nav">▶</button>
+                    </div>
+                </div>
+                <div id="resultadosContainer"></div>
+            </section>
+            <section id="viewRanking" class="view-section hidden">
+                <div class="section-header">
+                    <h3>🏆 Tabla de Posiciones</h3>
+                </div>
+                <div id="rankingContainer" class="ranking-table"></div>
+            </section>
+            <section id="viewReglas" class="view-section hidden">
+                <div class="reglas-container" id="reglasContent"></div>
+            </section>
+            <section id="viewLlaves" class="view-section hidden">
+                <div class="section-header">
+                    <h3>🏆 Llaves del Torneo</h3>
+                </div>
+                <div id="bracketUserContainer"></div>
+            </section>
+            <section id="viewAdmin" class="view-section hidden">
+                <div class="section-header">
+                    <h3>⚙️ Panel de Administración</h3>
+                </div>
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" data-admin-tab="resultados">Resultados</button>
+                    <button class="admin-tab-btn" data-admin-tab="jornadas">Jornadas</button>
+                    <button class="admin-tab-btn" data-admin-tab="pagos">Pagos</button>
+                    <button class="admin-tab-btn" data-admin-tab="usuarios">Usuarios</button>
+                    <button class="admin-tab-btn" data-admin-tab="bracket">Llaves</button>
+                </div>
+                <div class="admin-panel">
+                    <div id="adminTabResultados" class="admin-tab-content">
+                        <div class="admin-card">
+                            <h3>📊 Capturar Resultados</h3>
+                            <div class="jornada-selector">
+                                <button id="btnPrevJornadaAdmin" class="btn-nav">◀</button>
+                                <span id="jornadaDisplayAdmin">Jornada 1</span>
+                                <button id="btnNextJornadaAdmin" class="btn-nav">▶</button>
+                            </div>
+                            <div id="adminResultadosContainer" class="partidos-grid"></div>
+                            <button id="btnGuardarResultados" class="btn btn-primary btn-large">Guardar
+                                Resultados</button>
+                        </div>
+                    </div>
+                    <div id="adminTabJornadas" class="admin-tab-content hidden">
+                        <div class="admin-card">
+                            <h3>🗓️ Control de Jornadas</h3>
+                            <div id="controlJornadasContainer"></div>
+                        </div>
+                    </div>
+                    <div id="adminTabPagos" class="admin-tab-content hidden">
+                        <div class="admin-card">
+                            <h3>💰 Gestión de Pagos</h3>
+                            <div style="margin-bottom:20px;">
+                                <label style="display:block;margin-bottom:10px;font-weight:600;">Monto de
+                                    Entrada:</label>
+                                <div style="display:flex;gap:10px;align-items:center;">
+                                    <span style="font-size:1.5rem;font-weight:700;">$</span>
+                                    <input type="number" id="montoCuota" class="input-field"
+                                        style="width:150px;margin:0;" value="100" min="0" step="10">
+                                    <button id="btnGuardarMonto" class="btn btn-primary">Guardar Monto</button>
+                                </div>
+                            </div>
+                            <div class="stats-card">
+                                <h4>📊 Resumen Financiero</h4>
+                                <div class="stats-grid">
+                                    <div>
+                                        <p>Usuarios Pagados</p>
+                                        <h2 id="cantidadPagados">0</h2>
+                                    </div>
+                                    <div>
+                                        <p>Total Recaudado</p>
+                                        <h2 id="totalRecaudado">$0</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 style="margin-bottom:15px;">Lista de Usuarios</h4>
+                            <div id="listaPagosContainer"></div>
+                        </div>
+                    </div>
+                    <div id="adminTabUsuarios" class="admin-tab-content hidden">
+                        <div class="admin-card">
+                            <h3>👥 Usuarios Registrados</h3>
+                            <div id="usuariosContainer" class="usuarios-list"></div>
+                        </div>
+                        <div class="admin-card">
+                            <h3>👨‍💼 Moderadores</h3>
+                            <button onclick="agregarModerador()" class="btn btn-primary">+ Agregar Moderador</button>
+                            <div id="moderadoresContainer"></div>
+                        </div>
+                        <div class="admin-card">
+                            <h3>🔒 Seguridad</h3>
+                            <button onclick="cambiarPasswordAdmin()" class="btn btn-secondary">Cambiar Contraseña
+                                Admin</button>
+                            <button id="btnGenerarDatos" class="btn"
+                                style="background:#ff9800;color:white;margin-left:10px;">🎲 Generar Datos de
+                                Prueba</button>
+                        </div>
+                        <div class="admin-card danger-zone">
+                            <h3>⚠️ Zona de Peligro</h3>
+                            <p>Esta acción eliminará TODOS los datos de la aplicación.</p>
+                            <button onclick="limpiarTodosDatos()" class="btn btn-danger">🗑️ Eliminar Todos los
+                                Datos</button>
+                        </div>
+                    </div>
+                    <div id="adminTabBracket" class="admin-tab-content hidden">
+                        <div class="admin-card">
+                            <h3>🏆 Configuración de Llaves</h3>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="toggleBracketVisibility">
+                                <span>Mostrar llaves a los usuarios</span>
+                            </label>
+                            <h4>Habilitar Fases</h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox"
+                                        id="toggleDieciseisavos"><span>16vos de Final</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="toggleOctavos"><span>Octavos de
+                                        Final</span></label>
+                                <label class="checkbox-label"><input type="checkbox" id="toggleCuartos"><span>Cuartos de
+                                        Final</span></label>
+                                <label class="checkbox-label"><input type="checkbox"
+                                        id="toggleSemifinal"><span>Semifinales</span></label>
+                                <label class="checkbox-label"><input type="checkbox"
+                                        id="toggleFinal"><span>Final</span></label>
+                            </div>
+                            <div class="bracket-subtabs">
+                                <button class="bracket-subtab btn btn-primary active" data-bracket-tab="equipos"
+                                    onclick="cambiarSubTabBracket('equipos')">Configurar Equipos</button>
+                                <button class="bracket-subtab btn btn-secondary" data-bracket-tab="visual"
+                                    onclick="cambiarSubTabBracket('visual')">Ver Bracket</button>
+                            </div>
+                            <div id="bracketTabEquipos" class="bracket-subtab-content">
+                                <div id="bracketAdminContainer"></div>
+                            </div>
+                            <div id="bracketTabVisual" class="bracket-subtab-content hidden">
+                                <div id="bracketAdminVisual"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="toast" class="toast"><span id="toastIcon"></span><span id="toastMessage"></span></div>
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="confirmTitle"></h3>
+            <p id="confirmMessage"></p>
+            <div class="modal-buttons">
+                <button id="btnConfirmYes" class="btn btn-primary">Sí</button>
+                <button id="btnConfirmNo" class="btn btn-secondary">No</button>
+            </div>
+        </div>
+    </div>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script src="firebase-config.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

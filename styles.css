@@ -1,0 +1,1028 @@
+/* QUINIELA MUNDIAL FIFA 2026 - ESTILOS PROFESIONALES */
+
+/* ============================================
+   1. VARIABLES Y RESET
+   ============================================ */
+:root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --success: #00cc66;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --dark: #1a1a2e;
+    --light: #f8f9fa;
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* ============================================
+   2. ANIMACIONES
+   ============================================ */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ball-animation {
+    font-size: 4rem;
+    animation: bounce 2s infinite;
+    margin-bottom: 20px;
+}
+
+/* ============================================
+   3. PANTALLA DE LOGIN
+   ============================================ */
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.5s ease;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-field {
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* ============================================
+   4. BOTONES
+   ============================================ */
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: var(--gradient);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-ghost:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.btn-large {
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.btn-reset {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s;
+}
+
+.btn-reset:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.alert-info strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.alert-info p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   5. PANTALLA PRINCIPAL
+   ============================================ */
+.app-screen {
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+
+.navbar {
+    background: var(--gradient);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.nav-brand {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#currentUserName {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.nav-tabs {
+    background: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 14px 28px;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.nav-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background: var(--gradient);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.view-section {
+    animation: fadeIn 0.5s ease;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.section-header h3 {
+    font-size: 2.2rem;
+    color: var(--dark);
+    font-weight: 800;
+}
+
+.jornada-selector {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.jornada-selector span {
+    font-weight: 700;
+    font-size: 1.1rem;
+    min-width: 100px;
+    text-align: center;
+}
+
+.btn-nav {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.btn-nav:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* ============================================
+   6. PARTIDOS
+   ============================================ */
+.partidos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.partido-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+}
+
+.partido-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.partido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.grupo-badge {
+    background: var(--gradient);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.fecha-badge {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.equipos-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 24px 0;
+}
+
+.equipo {
+    text-align: center;
+    flex: 1;
+}
+
+.equipo-nombre {
+    display: block;
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.vs-divider {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary);
+    margin: 0 20px;
+}
+
+.pronostico-inputs,
+.resultado-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.score-input {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 900;
+    border: 3px solid var(--primary);
+    border-radius: 12px;
+    color: var(--primary);
+    transition: all 0.3s;
+}
+
+.score-input:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+    transform: scale(1.05);
+}
+
+.score-input:disabled {
+    background: #f0f0f0;
+    border-color: #ccc;
+    color: #999;
+}
+
+.resultado-display {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+/* ============================================
+   7. ALERTAS
+   ============================================ */
+.alert {
+    padding: 18px 24px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.alert-warning {
+    background: #fff3cd;
+    border-left: 5px solid var(--warning);
+    color: #856404;
+}
+
+/* ============================================
+   8. RANKING
+   ============================================ */
+.ranking-table {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.ranking-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 180px 120px;
+    align-items: center;
+    padding: 18px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s;
+}
+
+.ranking-item:hover {
+    background: #f8f9fa;
+    transform: translateX(5px);
+}
+
+.ranking-position {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.ranking-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.ranking-stats {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.ranking-points {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary);
+    text-align: right;
+}
+
+/* ============================================
+   9. ADMIN
+   ============================================ */
+.admin-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.admin-tab-btn {
+    padding: 14px 28px;
+    border: none;
+    background: white;
+    color: #666;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s;
+    box-shadow: var(--shadow);
+    font-size: 1rem;
+}
+
+.admin-tab-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.admin-tab-btn.active {
+    background: var(--gradient);
+    color: white;
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+
+.admin-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+}
+
+.admin-card h3 {
+    margin-bottom: 24px;
+    color: var(--dark);
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.admin-card h4 {
+    margin: 20px 0 15px 0;
+    color: var(--dark);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.danger-zone {
+    background: #fff3cd;
+    border: 3px solid var(--warning);
+}
+
+.danger-zone h3 {
+    color: #856404;
+}
+
+.danger-zone p {
+    color: #856404;
+    margin-bottom: 15px;
+}
+
+.stats-card {
+    background: var(--gradient);
+    color: white;
+    padding: 24px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+}
+
+.stats-card h4 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 15px;
+}
+
+.stats-grid p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.stats-grid h2 {
+    margin: 8px 0 0 0;
+    font-size: 2.8rem;
+    font-weight: 900;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1.05rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.usuario-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    transition: all 0.3s;
+}
+
+.usuario-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.usuario-info {
+    flex: 1;
+}
+
+.usuario-nombre {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.usuario-email {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ============================================
+   10. TOAST Y MODAL
+   ============================================ */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: white;
+    padding: 18px 28px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(400px);
+    transition: transform 0.3s;
+    z-index: 10000;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+#toastIcon {
+    font-size: 1.8rem;
+}
+
+#toastMessage {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 520px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content h3 {
+    margin-bottom: 18px;
+    color: var(--dark);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.modal-content p {
+    margin-bottom: 28px;
+    color: #666;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+/* ============================================
+   11. TABLAS
+   ============================================ */
+.tabla-posiciones {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.tabla-posiciones table {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.tabla-posiciones thead {
+    background: var(--gradient);
+    color: white;
+}
+
+.tabla-posiciones th,
+.tabla-posiciones td {
+    padding: 14px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.tabla-posiciones th:first-child,
+.tabla-posiciones td:first-child {
+    text-align: left;
+    font-weight: 700;
+}
+
+.tabla-posiciones tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s;
+}
+
+.tabla-posiciones tbody tr:hover {
+    background: #f8f9fa;
+}
+
+/* ============================================
+   12. RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .nav-brand {
+        font-size: 1.4rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .section-header h3 {
+        font-size: 1.8rem;
+    }
+
+    .partidos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ranking-item {
+        grid-template-columns: 70px 1fr 90px;
+    }
+
+    .ranking-stats {
+        display: none;
+    }
+
+    .jornada-selector {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav-tabs {
+        padding: 15px 10px;
+        gap: 8px;
+    }
+
+    .nav-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .score-input {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+
+    .usuario-item {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+}
+/* Radio Options para Distribución de Premios */
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.radio-option:hover {
+    border-color: var(--primary);
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.radio-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"]:checked + .radio-content {
+    color: var(--primary);
+}
+
+.radio-content {
+    flex: 1;
+}
+
+.radio-content strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+}
+
+.distribucion-detalle {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+}
+
+/* ============================================
+   BANNER DE PREMIO ANIMADO
+   ============================================ */
+.prize-banner {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-bottom: 3px solid #f0c000;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.prize-banner-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.prize-amount {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.prize-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #856404;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.prize-value {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #856404;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.prize-distribution {
+    text-align: center;
+}
+
+.prize-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 10px 0;
+}
+
+.prize-place {
+    background: rgba(255,255,255,0.4);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #856404;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s;
+}
+
+.prize-place:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.6);
+}
+
+.prize-model {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #856404;
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .prize-banner-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .prize-value {
+        font-size: 2rem;
+    }
+    
+    .prize-breakdown {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .prize-place {
+        font-size: 1.1rem;
+    }
+}
